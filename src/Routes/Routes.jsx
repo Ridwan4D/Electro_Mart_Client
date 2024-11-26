@@ -41,7 +41,17 @@ import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 import RefundPolicy from "../Pages/Refundpolicy/RefundPolicy";
 import MemberOrder from "../components/DashBoard/MemberOrder/memberOrder";
+<<<<<<< HEAD
 import DashBoardProfile from "../components/DashBoard/DashBoardProfile/DashBoardProfile";
+=======
+import UserOrder from "../components/DashBoard/MemberDashboard/UserOrder";
+import TopProducts from "../Pages/TopProducts";
+import CompleteOrder from "../components/DashBoard/Order/CompleteOrder";
+
+import MemberOrder from "../components/DashBoard/MemberOrder/MemberOrder";
+import SecureRoute from "../PrivateRoute/SecureRoute";
+
+>>>>>>> 670ba5beab5fe3ab8aa421bcd61e03440cd2abbb
 
 const router = createBrowserRouter([
   {
@@ -121,11 +131,30 @@ const router = createBrowserRouter([
       },
       {
         path: "manageCart",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 670ba5beab5fe3ab8aa421bcd61e03440cd2abbb
         element: (
           <PrivateRoute>
             <ManageCart />
           </PrivateRoute>
         ),
+<<<<<<< HEAD
+=======
+      },
+
+      {
+        path: "/checkout-page",
+        element: <CheckoutPage />,
+      },
+      {
+        path: "/shop-page",
+        element: <FilterProduct />,
+      },
+=======
+        element: <PrivateRoute><ManageCart /></PrivateRoute>,
+>>>>>>> 670ba5beab5fe3ab8aa421bcd61e03440cd2abbb
       },
       {
         path: "/checkout-page",
@@ -135,6 +164,7 @@ const router = createBrowserRouter([
         path: "/shop-page",
         element: <FilterProduct />,
       },
+>>>>>>> 87defe66094a9c69b31850a4ce42b6ae882cb713
     ],
   },
   {
@@ -161,12 +191,27 @@ const router = createBrowserRouter([
     path: "/cancel",
     element: <Cancel />,
   },
+<<<<<<< HEAD
+
+  {
+    path: "/complete-order/:tranId",
+    element: <CompleteOrder />,
+  },
+
+  {
+    path: "/top",
+=======
   {
     path: "/complete-order/:tranId",
     element: <CompleteOrder />,
   },
   {
+<<<<<<< HEAD
     path: "/top",
+=======
+    path: '/top',
+>>>>>>> 87defe66094a9c69b31850a4ce42b6ae882cb713
+>>>>>>> 670ba5beab5fe3ab8aa421bcd61e03440cd2abbb
     element: <TopProducts />,
   },
 
@@ -232,13 +277,25 @@ const router = createBrowserRouter([
       },
       {
         path: "member-order",
-        element: <MemberOrder />,
+        element: (
+          <SecureRoute>
+            <MemberOrder />
+          </SecureRoute>
+        ),
       },
       {
         path: "userOrder",
         element: <UserOrder />,
       },
+<<<<<<< HEAD
+
+      {
+        path: "orders",
+        element: <UserOrder />,
+      },
+=======
       // Add more dashboard routes as needed
+>>>>>>> 87defe66094a9c69b31850a4ce42b6ae882cb713
     ],
   },
 ]);
