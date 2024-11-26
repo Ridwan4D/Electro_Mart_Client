@@ -89,7 +89,7 @@ const CheckoutPage = () => {
 
 
     //     const shippingLabel = selectedShippingInput
-    //         ? form.querySelector(`label[for="${selectedShippingInput.id}"]`).innerText
+    //         ? form.querySelector(label[for="${selectedShippingInput.id}"]).innerText
     //         : "";
 
     //     //  payment 
@@ -120,7 +120,7 @@ const CheckoutPage = () => {
 
     //     try {
     //         const { data } = await axiosPublic.post(
-    //             `${import.meta.env.VITE_API_URL}/order`,
+    //             ${import.meta.env.VITE_API_URL}/order,
     //             formData
                
     //         );
@@ -189,7 +189,7 @@ const CheckoutPage = () => {
 
         try {
             const { data } = await axiosPublic.post(
-                `${import.meta.env.VITE_API_URL}/order`,
+               ` ${import.meta.env.VITE_API_URL}/order`,
                 formData
             );
 
@@ -201,15 +201,9 @@ const CheckoutPage = () => {
 
             } else if (selectedPaymentMethod === 'bkash') {
                 toast.success('Redirecting to SSL payment gateway...');
-
-                window.location.replace(data.paymentUrl); 
-
-            }
-
                 window.location.replace(data.paymentUrl);
 
             } 
-
         } catch (error) {
             console.error('Order placement error:', error);
             if (error.response) {
