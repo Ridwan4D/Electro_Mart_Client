@@ -41,6 +41,7 @@ import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 import RefundPolicy from "../Pages/Refundpolicy/RefundPolicy";
 import MemberOrder from "../components/DashBoard/MemberOrder/memberOrder";
+import DashBoardProfile from "../components/DashBoard/DashBoardProfile/DashBoardProfile";
 
 const router = createBrowserRouter([
   {
@@ -220,6 +221,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "dashboard-layout",
+        element: <DashBoardProfile />,
       },
       {
         path: "my-account",
