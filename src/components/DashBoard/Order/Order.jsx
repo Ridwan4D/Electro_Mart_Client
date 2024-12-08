@@ -106,19 +106,21 @@ const Order = () => {
     const data = [
       {
         detail: "Product",
-        info: pay.products.map(
-          (product, index) =>
-            `${index + 1})":"   ${
-              productDetails[product.mainProductId]?.title || "Loading..."
-            }`.join("\n") // Use line breaks for multi-line display
-        ),
+        info: pay.products
+          .map(
+            (product, index) =>
+              `(${index + 1}): ${
+                productDetails[product.mainProductId]?.title || "Loading..."
+              }`
+          )
+          .join("\n"), // Use line breaks for multi-line display
       },
       {
         detail: "Product Category",
         info: pay.products
           .map(
             (product, index) =>
-              ` ${index + 1}. ${
+              `${index + 1}. ${
                 productDetails[product.mainProductId]?.category || "Loading..."
               }`
           )

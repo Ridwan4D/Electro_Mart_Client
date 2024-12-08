@@ -165,20 +165,19 @@ const CheckoutPage = () => {
       number: form.number.value,
       address: form.address.value,
       paymentMethod: selectedPaymentMethod,
-
       getProductId,
       userOrder,
-
       city: form.city.value,
       district: form.district.value,
       division: form.division.value,
       totalAmount,
       shipping: shippingLabel,
-      orderStatus: "processing",
+      orderStatus: "processing", // Default status
       products: theUserCarts,
       userId: user._id,
       userEmail: user.email,
       adderMail: user?.email,
+      cartIds: theUserCarts.map((cart) => cart._id),
     };
 
     // console.log(formData);

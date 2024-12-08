@@ -237,7 +237,11 @@ const router = createBrowserRouter([
       },
       {
         path: "my-account",
-        element: <MemberDashBoard />,
+        element: (
+          <SecureRoute>
+            <MemberDashBoard />
+          </SecureRoute>
+        ),
       },
       {
         path: "member-order",
