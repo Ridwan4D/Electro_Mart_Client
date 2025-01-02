@@ -19,16 +19,22 @@ const Wishlist = () => {
   return (
     <div className="">
       {theUserWishlist.length > 0 && (
-        <div className="font_lexend min-h-[30vh] h-auto md:min-h-[40vh] lg:min-h-[50vh] bg-[url('https://res.cloudinary.com/duv5fiurz/image/upload/v1726674456/page-title-shop_ue5dxm.jpg')] bg-cover bg-center flex flex-col items-center justify-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-white font-semibold">
-            Wishlist
-          </h2>
-          <div className="flex gap-x-1 gap-y-0 md:mt-2 text-white text-sm">
-            <Link to="/" className="cursor-pointer hover:text-blue-500">
-              Home
-            </Link>
-            <span>/</span>
-            <p>Wishlist</p>
+        <div className="font_lexend min-h-[30vh] h-auto md:min-h-[40vh] lg:min-h-[50vh] relative bg-[url('https://res.cloudinary.com/dpsgtszzi/image/upload/v1734188066/wish_zs7hew.jpg')] bg-cover  flex flex-col items-center justify-center">
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black opacity-60"></div>
+
+          {/* Content */}
+          <div className="relative z-10 text-center flex flex-col items-center justify-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-gray-100 font-semibold">
+              Wishlist
+            </h2>
+            <div className="flex items-center gap-x-1 md:mt-2 text-white text-sm">
+              <Link to="/" className="cursor-pointer hover:text-blue-600">
+                Home
+              </Link>
+              <span>/</span>
+              <p>Wishlist</p>
+            </div>
           </div>
         </div>
       )}
@@ -103,6 +109,12 @@ const Wishlist = () => {
                       scope="col"
                       className="h-12 px-6 lg:text-[18px] md:text-[18px] text-[12px] font-semibold  border-l first:border-l-0 text-slate-700 bg-slate-100"
                     >
+                      Rating
+                    </th>
+                    <th
+                      scope="col"
+                      className="h-12 px-6 lg:text-[18px] md:text-[18px] text-[12px] font-semibold  border-l first:border-l-0 text-slate-700 bg-slate-100"
+                    >
                       Details
                     </th>
                     <th
@@ -135,7 +147,7 @@ const Wishlist = () => {
           )}
 
           {format === "card" && (
-            <div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-y-10 px-20">
+            <div className="my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-y-10 px-20 md:border-2 md:mx-10 py-4 border-gray-300">
               {theUserWishlist.map((wishProduct, index) => (
                 <WishlistCart key={index} wishProduct={wishProduct} />
               ))}

@@ -13,31 +13,28 @@ import UserAuth from "../../Hooks/useAuth";
 import useTotalAmount from "../../Hooks/useTotalAmount";
 
 import useFilteredOrders from "../../Hooks/useFilterOrder";
-
+import { Link } from "react-router-dom";
 
 const CheckoutPage = () => {
   const { locations } = useLocation();
   const axiosPublic = useAxiosPublic();
   const { user } = UserAuth();
 
-  const [recent,setRecent] = useState();
-
+  const [recent, setRecent] = useState();
 
   const { orders } = useFilteredOrders(user);
 
   // Check if the orders array is not empty
- useEffect(()=>{
-  if (orders && orders.length > 0) {
-    const lastOrder = orders[orders.length - 1]; // Get the last order
-    setRecent(lastOrder)
-    console.log('Last order:', lastOrder);
-  } else {
-    console.log('No orders found.');
-  }
- },[orders])
-  console.log('recent id',recent);
-  
-
+  useEffect(() => {
+    if (orders && orders.length > 0) {
+      const lastOrder = orders[orders.length - 1]; // Get the last order
+      setRecent(lastOrder);
+      console.log("Last order:", lastOrder);
+    } else {
+      console.log("No orders found.");
+    }
+  }, [orders]);
+  console.log("recent id", recent);
 
   const { totalPrice } = useTotalAmount();
 
@@ -94,7 +91,6 @@ const CheckoutPage = () => {
     }
   }, [selectedDistrict, districts]);
 
- 
   const handleSubmitData = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -132,7 +128,7 @@ const CheckoutPage = () => {
       division: form.division.value,
       totalAmount,
       shipping: shippingLabel,
-      orderStatus: "processing", // Default status
+      orderStatus: "processing",
       products: theUserCarts,
       userId: user._id,
       userEmail: user.email,
@@ -152,7 +148,7 @@ const CheckoutPage = () => {
 
       if (selectedPaymentMethod === "cashOnDelivery") {
         toast.success("Order placed successfully!");
-     
+
         window.location.replace(`/thanks/${recent.tran_id}`);
       } else if (selectedPaymentMethod === "bkash") {
         toast.success("Redirecting to SSL payment gateway...");
@@ -176,19 +172,19 @@ const CheckoutPage = () => {
     <div className="md:flex-row gap-10 md:px-10 pb-10">
       <ManageCartLink />
       <form className="space-y-4 mt-10" onSubmit={handleSubmitData}>
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <div className="w-full bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Billing Details</h2>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid lg:grid-cols-2 gap-2">
               <div>
-                <label className="block text-sm mt-2 text-gray-600 font-medium mb-1">
+                <label className="block text-sm mt-2  text-gray-600 font-medium mb-1">
                   Name
                 </label>
                 <input
                   type="text"
                   name="name"
-                  className="w-full border border-gray-300 p-2 rounded-md"
+                  className="w-full  outline-none  border border-gray-300 p-2 rounded-md"
                   placeholder="Your Full Name"
                   required
                 />
@@ -200,7 +196,7 @@ const CheckoutPage = () => {
                 <input
                   type="tel"
                   name="number"
-                  className="w-full border border-gray-300 p-2 rounded-md"
+                  className="w-full border outline-none border-gray-300 p-2 rounded-md"
                   placeholder="Your Phone Number"
                   required
                 />
@@ -213,12 +209,12 @@ const CheckoutPage = () => {
                   Division
                 </label>
                 <select
-                  className="border w-full p-2 rounded-md"
+                  className="border w-full p-2 outline-none focus:bg-gray-50 rounded-md"
                   name="division"
                   value={selectedState}
                   onChange={(e) => setSelectedState(e.target.value)}
                 >
-                  <option value="">Select Division</option>
+                  <option required value="">Select Division</option>
                   {locations.map((location) => (
                     <option key={location.division} value={location.division}>
                       {location.division}
@@ -231,12 +227,12 @@ const CheckoutPage = () => {
                   District
                 </label>
                 <select
-                  className="border w-full p-2 rounded-md"
+                  className="border w-full outline-none focus:bg-gray-50 p-2 rounded-md"
                   name="district"
                   value={selectedDistrict}
                   onChange={(e) => setSelectedDistrict(e.target.value)}
                 >
-                  <option value="">Select District</option>
+                  <option required value="">Select District</option>
                   {districts.map((district, index) => (
                     <option key={index} value={district.name}>
                       {district.name}
@@ -250,8 +246,8 @@ const CheckoutPage = () => {
               <label className="block text-sm mt-2 text-gray-600 font-medium mb-1">
                 Upazila/City
               </label>
-              <select className="border w-full p-2 rounded-md" name="city">
-                <option value="">Select City</option>
+              <select className="border w-full outline-none focus:bg-gray-50 p-2 rounded-md" name="city">
+                <option required value="">Select City</option>
                 {cities.map((city, index) => (
                   <option key={index} value={city}>
                     {city}
@@ -268,7 +264,7 @@ const CheckoutPage = () => {
                 <input
                   type="text"
                   name="address"
-                  className="w-full border border-gray-300 p-2 rounded-md"
+                  className="w-full border outline-none  border-gray-300 p-2 rounded-md"
                   placeholder="Enter your address"
                   required
                 />
@@ -308,7 +304,7 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-          <div className="w-full bg-white p-6 rounded-lg shadow-md">
+          <div className="w-full bg-white max-h-auto sticky top-0 p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Your Order</h2>
             <div className="space-y-4">
               <div className="flex justify-between">
@@ -369,14 +365,18 @@ const CheckoutPage = () => {
                 <span>Total</span>
                 <span>{totalAmount} ৳</span>
               </div>
-
+              <div className="flex gap-1 capitalize text-sm">
+                <input required type="checkbox" name="" id="" />
+                <p>i agree to the <Link to={'/termsAndConditions'} className="text-blue-500 underline">privacy & policy</Link> </p>
+              </div>
               <button
                 type="submit"
                 className="w-full bg-blue-500 text-white py-3 rounded-md mt-4"
               >
-                Place Order {totalAmount}
+                Place Order {totalAmount} ৳
               </button>
             </div>
+
           </div>
         </div>
       </form>

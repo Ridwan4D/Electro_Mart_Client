@@ -10,7 +10,7 @@ const Layout = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Scroll to the top of the page on every route change
+    // Scroll to top on route change
     window.scrollTo(0, 0);
   }, [location]);
 

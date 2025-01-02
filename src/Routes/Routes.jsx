@@ -40,11 +40,13 @@ import CookiePolicy from "../Pages/CookiePolicy/CookiePolicy";
 import PrivacyPolicy from "../Pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "../Pages/TermsAndConditions/TermsAndConditions";
 import RefundPolicy from "../Pages/Refundpolicy/RefundPolicy";
-import MemberOrder from "../components/DashBoard/MemberOrder/memberOrder";
+
 import SecureRoute from "../PrivateRoute/SecureRoute";
 import DashBoardProfile from "../components/DashBoard/DashBoardProfile/DashBoardProfile";
 import TrackOrder from "../Pages/TrackOrder/TrackOrder";
 import UserRoute from "../PrivateRoute/UserRoute";
+import Setting from "../components/DashBoard/Setting/Setting";
+import MemberOrder from "../components/DashBoard/MemberOrder/MemberOrder";
 
 const router = createBrowserRouter([
   {
@@ -59,26 +61,26 @@ const router = createBrowserRouter([
       {
         path: "/productDetails/:id",
         element: (
-          <PrivateRoute>
+          
             <ProductDetails />
-          </PrivateRoute>
+        
         ),
         loader: () => fetch(`${import.meta.env.VITE_API_URL}/products/`),
       },
       {
         path: "/comparePage",
         element: (
-          <SecureRoute>
+         
             <ComparePage />
-          </SecureRoute>
+         
         ),
       },
       {
         path: "/wishlist",
         element: (
-          <SecureRoute>
+         
             <Wishlist />
-          </SecureRoute>
+          
         ),
       },
       {
@@ -125,9 +127,9 @@ const router = createBrowserRouter([
       {
         path: "manageCart",
         element: (
-          <PrivateRoute>
+          
             <ManageCart />
-          </PrivateRoute>
+          
         ),
       },
       {
@@ -136,7 +138,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout-page",
-        element: <CheckoutPage />,
+        element: <SecureRoute><CheckoutPage /></SecureRoute>
       },
       {
         path: "/shop-page",
@@ -269,6 +271,10 @@ const router = createBrowserRouter([
           </UserRoute>
         ),
       },
+      {
+        path:'setting',
+        element:<Setting/>
+      }
     ],
   },
 ]);

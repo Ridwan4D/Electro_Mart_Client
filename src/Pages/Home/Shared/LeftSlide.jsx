@@ -17,6 +17,7 @@ const LeftSlide = () => {
 
   const openModal = () => {
     setModalOpen(true);
+    // console.log("clicked");
   };
 
   return (
@@ -40,7 +41,7 @@ const LeftSlide = () => {
                 <img
                   src={slide.url}
                   alt={`slide ${idx + 1}`}
-                  className="w-full cursor-pointer lg:min-h-[300px] md:max-h-[300px] lg:max-h-[392px] h-[30vh] md:h-auto rounded-lg object-contain md:object-fill"
+                  className="w-full cursor-pointer lg:min-h-[300px] md:max-h-[300px] lg:max-h-[392px] h-[30vh] md:h-auto rounded-lg object-contain sm:object-fill"
                 />
 
                 <div className="absolute inset-0 flex flex-col items-start justify-center md:left-5 lg:left-8 px-1">
@@ -49,9 +50,6 @@ const LeftSlide = () => {
                       {slide.title}
                     </h2>
                   )}
-                  {/* <Link to="/" className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600 transition">
-                                        Shop Now
-                                    </Link> */}
                 </div>
                 {role === "admin" && (
                   <span
@@ -70,7 +68,7 @@ const LeftSlide = () => {
           <SwiperSlide>
             <div className="relative">
               <img
-                src="https://placehold.co/620x400" // Static placeholder image
+                src="https://placehold.co/620x400"
                 alt="default slide"
                 className="w-full lg:min-h-[300px] md:max-h-[300px] lg:max-h-[351px] xl:max-h-[648px] h-[30vh] md:h-full rounded-lg object-contain md:object-right lg:object-fill"
               />

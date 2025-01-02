@@ -1,10 +1,16 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useCategories from "../../Hooks/useCategories";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const MobileNavBar = () => {
   const { categories } = useCategories();
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleCategoryClick = (cat) => {
+    setSelectedCategory(cat);
+  };
 
   const navLinks = [
     {
@@ -37,9 +43,9 @@ const MobileNavBar = () => {
     <div className="relative">
       <div className="sticky top-0 z-40 pt-10 bg-white">
         <Tabs>
-          <TabList className="border-b-2 border-blue-500">
+          <TabList className=" shadow-sm flex ">
             <Tab
-              selectedClassName="w-full text-blue-600 underline"
+              selectedClassName="w-full  text-blue-600 underline"
               className="pr-4 py-0 cursor-pointer rounded-lg"
             >
               Menu
@@ -55,7 +61,7 @@ const MobileNavBar = () => {
           <div className="overflow-y-auto h-[calc(100vh-100px)]">
             <TabPanel>
               {/* Add your content here */}
-              <ul className="space-y-3 mt-5 text-lg font-medium">
+              <ul className="space-y-3 mt-5 text-md font-medium">
                 {navLinks.map((link, idx) => (
                   <li key={idx}>
                     <NavLink
@@ -78,9 +84,20 @@ const MobileNavBar = () => {
                   (cat, idx) =>
                     cat?.newCategory && (
                       <li key={idx}>
-                        <a className="text-md font-medium text-black px-2 py-1 hover:bg-white hover:text-blue-500">
-                          {cat?.newCategory}
-                        </a>
+                        <Link
+                          to={`/shop-page?category=${cat.newCategory}`}
+                          onClick={() => handleCategoryClick(cat.newCategory)}
+                        >
+                          <span
+                            className={`text-md font-medium py-0 text-gray-600 hover:text-blue-500 hover:underline ${
+                              selectedCategory === cat.newCategory
+                                ? "text-blue-600"
+                                : "text-black"
+                            }`}
+                          >
+                            {cat.newCategory}
+                          </span>
+                        </Link>
                       </li>
                     )
                 )}

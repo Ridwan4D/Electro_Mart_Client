@@ -12,9 +12,21 @@ const StorPage = () => {
   };
   return (
     <div className="  px-2 font_cabin ">
-      <div className="flex flex-col lg:flex-row items-center  bg-blue-500 rounded-md my-3">
-        <div className="text-white lg:w-1/2 p-6">
-          <h1 className="text-3xl font-semibold">Visit Our Stores</h1>
+      <div className="flex h-[40vh] md:h-[300px] flex-col lg:flex-row items-center bg-blue-500 rounded-md my-3 relative overflow-hidden">
+        {/* Image as Background */}
+        <div className="absolute inset-0 ">
+          <img
+            src="https://res.cloudinary.com/dpsgtszzi/image/upload/v1734187800/store1_m5f74y.jpg"
+            className=" w-full h-full items-center object-cover"
+            alt="Store display"
+          />
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+        </div>
+
+        {/* Content on Top of the Background */}
+        <div className="relative text-white lg:w-1/2 p-6 z-10">
+          <h1 className="text-3xl  font-semibold">Visit Our Stores</h1>
           <p className="mt-2 text-sm font-medium lg:text-base">
             You can receive an order from us, find many products with unique
             discounts, and also, if necessary, contact the service center.
@@ -33,13 +45,6 @@ const StorPage = () => {
               <h6>Service center</h6>
             </button>
           </div>
-        </div>
-        <div className="mt-6 lg:mt-0 lg:ml-16">
-          <img
-            src="https://res.cloudinary.com/dpsgtszzi/image/upload/v1730735984/store_fkpulx.avif"
-            className="   w-full lg:h-full md:h-96 object-cover"
-            alt="Store display"
-          />
         </div>
       </div>
 
@@ -81,7 +86,8 @@ const StorPage = () => {
                 </h2>
                 <Link
                   to={`/storeDetails/${store?._id}`}
-                  className="mt-3 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                  className="mt-3 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                >
                   View Store
                 </Link>
               </div>
@@ -139,7 +145,7 @@ const StorPage = () => {
         </p>
         <button
           onClick={handleReadMore}
-          className="mt-3 px-3 py-2 text-md bg-white rounded hover:bg-gray-100"
+          className="mt-3 px-3 py-2 text-md bg-white text-blue-500 underline rounded hover:bg-gray-100"
         >
           {showMore ? "Show Less" : "Read More"}
         </button>

@@ -45,6 +45,7 @@ const MenuBar = () => {
     { title: "Shop", path: "/shop-page" },
     { title: "Store", path: "/storesPage" },
     { title: "Promotion", path: "/promotion" },
+    { title: "About Us", path: "/about" },
     { title: "Contact Us", path: "/contacts" },
   ];
   // console.log(role);
@@ -55,7 +56,7 @@ const MenuBar = () => {
     <div className="navbar hidden lg:flex bg-gradient-to-r from-blue-700 via-blue-900 to-blue-500 text-white w-full">
       {/* Left side */}
       <div
-        className="relative  px-2 w-full gap-x-5 font_inter xl:flex-1"
+        className="relative px-2 w-full gap-x-5 font_inter xl:flex-1"
         ref={dropdownRef}
       >
         {/* Toggle Button */}
@@ -63,7 +64,7 @@ const MenuBar = () => {
           <button
             onMouseEnter={() => setIsOpen(true)}
             onClick={() => setIsOpen(false)}
-            className="bg-blue-500 pt-1 pb-1 pl-3 pr-3 flex items-center rounded-full shadow-white text-gray-100 text-md font-medium"
+            className="bg-blue-500 pt-1 pb-1 pl-3 pr-3 flex items-center rounded-full shadow-white text-gray-100 text-md font-medium text-sm xl:text-base"
           >
             All Category
             {isOpen ? (
@@ -74,22 +75,25 @@ const MenuBar = () => {
           </button>
           {/* Dropdown Menu */}
           {isOpen && (
-            <div className="absolute top-full left-1 z-40 w-full bg-white shadow-lg border border-gray-200 mt-2 rounded-lg overflow-hidden px-5 py-3 lg:min-w-[1165px] max-w-[1700px]">
-              <ul className="xl:grid lg:flex lg:flex-wrap  xl:grid-cols-10  gap-y-2 ">
+            <div className="absolute lg:w-[1160px] xl:w-[1790px]  w-full top-full left-0 z-40 ml-2 xl:ml-4 bg-white shadow-lg border border-gray-200 mt-4 overflow-hidden overflow-x-hidden py-3">
+              <ul className=" grid grid-cols-8 xl:grid-cols-12 gap-y-2  pt-2">
                 {categories.map(
                   (cat, idx) =>
                     cat.newCategory && (
-                      <li key={idx}>
+                      <li key={idx} className="col-span-1">
                         <Link
                           to={`/shop-page?category=${cat.newCategory}`}
-                          className={`text-md font-medium px-2 py-1 block text-gray-600 hover:text-blue-500 hover:underline ${
-                            selectedCategory === cat.newCategory
-                              ? "text-blue-600"
-                              : "text-black"
-                          }`}
                           onClick={() => handleCategoryClick(cat.newCategory)}
                         >
-                          {cat.newCategory}
+                          <span
+                            className={`text-md font-medium px-2 py-1 block text-gray-600 hover:text-blue-500 hover:underline truncate ${
+                              selectedCategory === cat.newCategory
+                                ? "text-blue-600"
+                                : "text-black"
+                            }`}
+                          >
+                            {cat.newCategory}
+                          </span>
                         </Link>
                       </li>
                     )
@@ -101,17 +105,17 @@ const MenuBar = () => {
 
         {/* Navigation Buttons */}
         <div>
-          <ul className="flex gap-x-3 ">
+          <ul className="flex gap-x-3">
             {navLinks.map((link, idx) => (
               <li key={idx}>
                 <NavLink
                   to={link.path}
                   className={({ isActive }) =>
-                    `text-md font-medium lg:text-sm xl:base hover:text-teal-300 ${
+                    `text-md font-medium hover:text-teal-300 ${
                       isActive
-                        ? "bg-gray-50/30 underline rounded"
+                        ? "bg-gray-50/40 underline rounded"
                         : "text-white"
-                    } bg-gray-50/20 px-5 py-1 rounded-sm`
+                    } bg-gray-50/10 px-5 py-1 rounded text-sm xl:text-base`
                   }
                 >
                   {link.title}
@@ -125,10 +129,10 @@ const MenuBar = () => {
       <div className="">
         {/* Track Order Section */}
 
-        <div className="flex lg:text-sm  items-center justify-end gap-x-10 px-5 xl:flex-1">
+        <div className="flex items-center justify-end  xl:gap-x-10 px-2 xl:px-5 xl:flex-1">
           <button
             disabled={disable}
-            className={`flex flex-col items-center justify-center text-center ${
+            className={`flex flex-col lg:w-[120px] items-center  text-center ${
               disable ? "cursor-not-allowed" : ""
             }`}
           >
@@ -138,19 +142,24 @@ const MenuBar = () => {
                 disable ? "pointer-events-none" : "text-white"
               }`}
             >
-              <FaLocationDot className="text-[22px] bg-white text-blue-600 p-1 rounded-full shadow-md" />
-              <p className="font-medium flex">Track Order</p>
+              <FaLocationDot className="text-xl xl:text-base bg-white text-blue-600 p-1 rounded-full shadow-md" />
+              <p className="text-md xl:text-base xl:font-medium ">
+                Track Order
+              </p>
             </Link>
           </button>
-          <div className="divider lg:divider-horizontal"></div>
-          <div className="hidden lg:flex gap-x-3 items-center justify-center">
+          <div className="xl:divider xl:divider-horizontal"></div>
+          <div className="lg:hidden xl:flex gap-x-3 items-center justify-center">
             <div className="flex items-center gap-2 mt-1">
-              <FaPhoneAlt className="text-blue-600 text-[22px] bg-white p-1 rounded-full shadow-md" />
-              <h1 className="font-semibold text-white hover:underline">
+              <FaPhoneAlt className="text-blue-600 text-lg bg-white p-1 rounded-full shadow-md" />
+
+              <h1 className="text-sm xl:text-base xl:font-semibold text-white hover:underline">
                 01786397249
               </h1>
             </div>
-            <p className="font-semibold">24/7 Support</p>
+            <p className="text-sm xl:text-base xl:font-semibold border-b border-white xl:border-0">
+              24/7 Support
+            </p>
           </div>
         </div>
         {/* Contact Section */}
